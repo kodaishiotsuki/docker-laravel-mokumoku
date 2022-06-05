@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\EventController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('event.index');
-});
+//一覧画面
+Route::get('/', [EventController::class, 'index'])->name('event.index');
+
+//カテゴリー一覧画面
+Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');
