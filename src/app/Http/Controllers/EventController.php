@@ -42,6 +42,8 @@ class EventController extends Controller
 
     public function create(Request $request)
     {
+        // dd($request->date);
+        $insertEvent = $this->event->insertEventData($request);
         return redirect()->route('event.index');
     }
 }
