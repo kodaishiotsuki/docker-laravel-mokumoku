@@ -28,7 +28,7 @@
     @foreach ($events as $event)
         <div class="card container text-center mb-5" id="mokumoku-lists">
             <div class="card-header font-weight-bold bg-white">
-                <a href="">{{ $event->title }}</a>
+                <a href="{{ route('event.show', ['id' => $event->event_id]) }}">{{ $event->title }}</a>
             </div>
             <div class="card-body">
                 <div class="category text-left">
@@ -46,7 +46,8 @@
                         </p>
                     </div>
                     <div class="btn-filed ml-auto">
-                        <button class="btn btn-primary mr-3">{{ '詳細' }}</button>
+                        <a href="{{ route('event.show', ['id' => $event->event_id]) }}"
+                            class="btn btn-primary mr-3">{{ '詳細' }}</a>
                         <button class="btn btn-info mr-3">{{ '編集' }}</button>
                         <button class="btn btn-danger mr-3">{{ '削除' }}</button>
                     </div>

@@ -62,4 +62,13 @@ class EventController extends Controller
         }
         return redirect()->route('event.index');
     }
+
+    /**
+     * 詳細画面
+     */
+
+    public function show($id)
+    {
+        return view('event.show');
+    }
 }
