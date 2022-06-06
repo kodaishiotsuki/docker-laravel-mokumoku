@@ -28,5 +28,10 @@ Route::post('/event/create', [EventController::class, 'create'])->name('event.cr
 //詳細画面
 Route::get('/event/{id}', [EventController::class, 'show'])->name('event.show');
 
+//編集画面
+Route::get('/event/edit/{id}', [EventController::class, 'edit'])->name('event.edit');
+
+//編集処理
+
 //カテゴリー一覧画面
 Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');
