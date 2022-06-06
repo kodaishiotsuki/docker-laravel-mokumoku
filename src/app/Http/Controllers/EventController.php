@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB; // 追加
+
 
 class EventController extends Controller
 {
@@ -42,8 +44,21 @@ class EventController extends Controller
 
     public function create(Request $request)
     {
-        // dd($request->date);
-        $insertEvent = $this->event->insertEventData($request);
+        try {
+            // トランザクション開始
+            DB::beginTransaction();
+            // リクエストされたデータをもとにeventsテーブルにデータをinsert
+            $insertEvent = $this->event->insertEventData($request);
+            // 処理に成功したらコミット
+            DB::commit();
+        } catch (\Throwable $e) {
+            // 処理に失敗したらロールバック
+            DB::rollback();
+            // エラーログ
+            \Log::error($e);
+            // 登録処理失敗時にリダイレクト
+            return redirect()->route('event.index')->with('error', 'もくもく会の登録に失敗しました。');
+        }
         return redirect()->route('event.index');
     }
 }
