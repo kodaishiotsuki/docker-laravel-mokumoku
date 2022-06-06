@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Event;
 use Illuminate\Http\Request;
 
@@ -10,6 +11,7 @@ class EventController extends Controller
     public function __construct()
     {
         $this->event = new Event();
+        $this->category = new Category();
     }
 
     /**
@@ -22,5 +24,15 @@ class EventController extends Controller
         // dd($events);
         //コントローラーからビューに渡す
         return view('event.index', compact('events'));
+    }
+
+    /**
+     * 会員登録画面
+     */
+
+    public function register()
+    {
+        $categories = $this->category->allCategoriesData();
+        return view('event.register', compact('categories'));
     }
 }
