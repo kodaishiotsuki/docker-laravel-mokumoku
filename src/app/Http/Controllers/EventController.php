@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EventRequest;
 use App\Models\Category;
 use App\Models\Event;
 use Illuminate\Http\Request;
@@ -42,7 +43,7 @@ class EventController extends Controller
      * 会員登録処理
      */
 
-    public function create(Request $request)
+    public function create(EventRequest $request)
     {
         try {
             // トランザクション開始
