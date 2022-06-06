@@ -25,6 +25,7 @@
 <body>
     <div id="app">
         <main class="py-4">
+            @include('common.nav')
             @yield('content')
         </main>
     </div>

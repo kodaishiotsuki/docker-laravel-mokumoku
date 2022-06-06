@@ -11,28 +11,6 @@
         }
 
     </style>
-
-    {{-- ナビゲーション --}}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light container">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{ route('event.index') }}">もくもく会</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mokumoku"
-                aria-controls="mokumoku" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="mokumoku">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('event.index') }}">一覧</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">開催する</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
     {{-- もくもく会開催一覧リスト --}}
     @foreach ($events as $event)
         <div class="card container text-center mb-5" id="mokumoku-lists">
@@ -54,7 +32,7 @@
                             {{ mb_substr($event->content, 0, 100, 'UTF-8') . '...' }}
                         </p>
                     </div>
-                    <div class="btn-filed ml-auto d-flex">
+                    <div class="btn-filed ml-auto">
                         <button class="btn btn-primary mr-3">{{ '詳細' }}</button>
                         <button class="btn btn-info mr-3">{{ '編集' }}</button>
                         <button class="btn btn-danger mr-3">{{ '削除' }}</button>
