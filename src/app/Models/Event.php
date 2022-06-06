@@ -50,7 +50,7 @@ class Event extends Model
 
     /**
      * 登録処理 eventsテーブルにデータをinsert
-     * 
+     *
      */
     public function insertEventData($request)
     {
@@ -63,5 +63,16 @@ class Event extends Model
             'content'     => $request->content,
             'entry_fee'   => $request->entry_fee,
         ]);
+    }
+
+    /**
+     * idをもとにeventsテーブルから特定のレコードに絞り込む
+     *
+     * @param int $id イベントID
+     * @return Event
+     */
+    public function findEventByEventId($id)
+    {
+        return $this->find($id);
     }
 }
