@@ -35,4 +35,13 @@ class EventController extends Controller
         $categories = $this->category->allCategoriesData();
         return view('event.register', compact('categories'));
     }
+
+    /**
+     * 会員登録処理
+     */
+
+    public function create(Request $request)
+    {
+        return redirect()->route('event.index');
+    }
 }
