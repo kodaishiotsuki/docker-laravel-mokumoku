@@ -114,4 +114,35 @@ class EventController extends Controller
 
         return view('event.edit', compact('categories', 'event'));
     }
+
+    /**
+     * 更新処理
+     */
+
+    public function update(EventRequest $request)
+    {
+        //イベントIDを取得
+        $eventId = $request->event_id;
+
+        //イベントIDを元に更新対象のレコードを1件取得
+        $event = $this->event->findEventByEventId($eventId);
+
+        try {
+            // トランザクション開始
+            DB::beginTransaction();
+            //更新対象のレコードの更新処理を実行
+            $isUpdate = $this->event->updateEventData($request, $event);
+            // 処理に成功したらコミット
+            DB::commit();
+        } catch (\Throwable $e) {
+            // 処理に失敗したらロールバック
+            DB::rollback();
+            // エラーログ
+            \Log::error($e);
+            // 登録処理失敗時にリダイレクト
+            return redirect()->route('event.index')->with('error', 'もくもく会の登録に失敗しました。');
+        }
+
+        return redirect()->route('event.index')->with('success', 'もくもく会の更新に成功しました.');
+    }
 }
