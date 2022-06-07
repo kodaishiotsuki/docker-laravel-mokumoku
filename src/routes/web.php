@@ -34,5 +34,8 @@ Route::get('/event/edit/{id}', [EventController::class, 'edit'])->name('event.ed
 //編集処理
 Route::post('/event/update', [EventController::class, 'update'])->name('event.update');
 
+//削除処理
+Route::post('/event/delete/{id}', [EventController::class, 'delete'])->name('event.delete');
+
 //カテゴリー一覧画面
 Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');

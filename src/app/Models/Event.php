@@ -91,4 +91,13 @@ class Event extends Model
             'entry_fee'   => $request->entry_fee,
         ])->save();
     }
+
+    /**
+     * 削除処理
+     */
+
+    public function deleteEventData($id)
+    {
+        return $this->destroy($id);
+    }
 }
